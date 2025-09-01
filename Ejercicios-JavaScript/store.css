@@ -1,0 +1,147 @@
+/* ===== Variables de color (reutilizables) ===== */
+:root {
+  --color-primario:   rgb(120, 11, 11);   /* rojo oscuro */
+  --color-primario-2: rgb(160, 20, 20);   /* rojo hover */
+  --color-secundario: rgb(35, 11, 120);   /* violeta */
+  --color-secundario-2: rgb(60, 25, 160); /* violeta hover */
+  --color-texto: #fff;
+}
+
+/* ===== Grid ===== */
+main { 
+  display: grid; 
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+main div {
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 15px;
+}
+
+div img { 
+  width: 100%;
+}
+
+/* ===== HEADER ===== */
+.item1 {
+  grid-area: header;
+  background: var(--color-primario);
+  color: var(--color-texto);
+  font-size: 2rem;         /* más grande */
+  font-weight: 800;        /* bien destacado */
+  text-align: center;      /* centrado el texto */
+  padding: 20px;
+  margin: 0;
+  width: 100%;             /* ocupa todo el ancho */
+  box-sizing: border-box;
+}
+.item2 { grid-area: nav; }
+.item3 { grid-area: aside; }
+.item4 { grid-area: main; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header"
+    "nav nav nav nav nav"
+    "aside main main main main"
+    "footer footer footer footer footer";
+}
+
+/* ===== NAV: botones con transición ===== */
+nav.item2 {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:12px 16px;
+}
+
+.btn {
+  display:inline-block;
+  color: var(--color-texto);
+  text-decoration:none;
+  font-weight:700;
+  border-radius:6px;
+  border:4px solid #fff;
+  outline:3px solid transparent;
+  padding:8px 14px;
+  transition:
+    background-color 0.6s ease-in-out,
+    padding 0.6s ease-in-out,
+    outline-color 0.6s ease-in-out;
+}
+
+.btn--catalogo {
+  background: var(--color-primario);
+  outline-color: var(--color-primario);
+}
+.btn--catalogo:hover {
+  background: var(--color-primario-2);
+  padding:10px 18px;
+  outline-color: var(--color-primario-2);
+}
+
+.btn--carrito {
+  background: var(--color-secundario);
+  outline-color: var(--color-secundario);
+}
+.btn--carrito:hover {
+  background: var(--color-secundario-2);
+  padding:10px 18px;
+  outline-color: var(--color-secundario-2);
+}
+
+/* =========================
+   MEDIA QUERIES (Responsive)
+   ========================= */
+
+/* Tablets: apilamos aside debajo del nav y reducimos columnas de productos */
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-areas:
+      "header header header header header"
+      "nav    nav    nav    nav    nav"
+      "aside  aside  aside  aside  aside"
+      "main   main   main   main   main"
+      "footer footer footer footer footer";
+  }
+
+  /* 2 columnas de productos */
+  main.item4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* header un poco más chico */
+  .item1 { font-size: 1.8rem; }
+}
+
+/* Móviles grandes: una columna de productos y botones a ancho completo */
+@media (max-width: 600px) {
+  /* 1 columna de productos */
+  main.item4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* nav vertical y botones full-width */
+  nav.item2 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* header ocupa todo, texto un poco más chico para caber */
+  .item1 { font-size: 1.5rem; padding: 16px; }
+}
+
+/* Muy pequeños: reducir paddings para que todo entre */
+@media (max-width: 380px) {
+  .btn { padding: 8px 12px; }
+  main div { margin: 10px; padding: 12px; }
+}

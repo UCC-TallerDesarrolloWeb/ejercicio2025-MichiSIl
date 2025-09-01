@@ -1,44 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>CV Nombre Apellido</title>
+  <meta charset="UTF-8" />
+  <title>CV Nombre Apellido</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="imagenes/favicon.png" type="image/png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos externa -->
+  <link rel="stylesheet" href="mi-estilo.css">
 </head>
 <body>
 
-<div>
-    <h1>Nombre Alumno</h1>
-    <h2>Ing. en Computacion</h2>
-</div>
+  <div id="contenedor">
 
-<div>
-    <h3>Datos Personales</h3>
-    <p><span>Fecha de Nacimiento:</span> dd/mm/aaaa</p>
-    <p><span>Email:</span> email@email.com</p>
-</div>
+    <!-- Cabecera -->
+    <div id="header" class="card">
+      <img id="icono-usuario" src="imagenes/icon.png" alt="Foto de perfil">
+      <div class="titulos">
+        <h1>Nombre Alumno</h1>
+        <h2>Ing. en Computación</h2>
+      </div>
+    </div>
 
-<div>
-    <h3>Formacion Academica</h3>
-    <p><span>Carrera:</span> Ingeniería XXXXX</p>
-    <p><span>Universidad:</span> Universidad Católica de Córdoba</p>
-    <p><span>Año de Ingreso:</span> 2018</p>
-</div>
 
-<div>
-    <h3>Cursos</h3>
+    <!-- Datos personales -->
+    <div class="card">
+      <h3>Datos Personales</h3>
+      <p><span class="label">Fecha de Nacimiento:</span> dd/mm/aaaa</p>
+      <p><span class="label">Email:</span> email@email.com</p>
+    </div>
 
-    <div>
+    <!-- Formación académica -->
+    <div class="card">
+      <h3>Formación Académica</h3>
+      <p><span class="label">Carrera:</span> Ingeniería XXXXX</p>
+      <p><span class="label">Universidad:</span> Universidad Católica de Córdoba</p>
+      <p><span class="label">Año de Ingreso:</span> 2018</p>
+    </div>
+
+    <!-- Cursos -->
+    <div class="card">
+      <h3>Cursos</h3>
+
+      <div>
         <h4>Nombre Curso 1</h4>
-        <p><span>Lugar:</span> Nombre Institución</p>
-        <p><span>Año:</span> XXXX </p>
+        <p><span class="label">Lugar:</span> Nombre Institución</p>
+        <p><span class="label">Año:</span> XXXX</p>
+      </div>
+
+      <div>
+        <h4>Nombre Curso 2</h4>
+        <p><span class="label">Lugar:</span> Nombre Institución</p>
+        <p><span class="label">Año:</span> XXXX</p>
+      </div>
     </div>
 
-    <div>
-        <h4>Nombre Curso 2</h4>
-        <p><span>Lugar:</span> Nombre Institución</p>
-        <p><span>Año:</span> XXXX </p>
-    </div>
-</div>
+    <!-- Footer -->
+    <footer class="card" style="text-align:center;">
+      <p>© 2025 Nombre Apellido</p>
+    </footer>
+
+  </div>
 
 </body>
 </html>

@@ -19,21 +19,44 @@
 
 <h3>Suscribase a Nuestro Portal de Noticias! Crear una cuenta es rápido!</h3>
 <form name="Suscribirse">
+    <fieldset> 
+        <legend> Informacion Personal </legend>
     <p>
-        Nombre: <input type="text" name="nombre" size="40" placeholder="Ingrese su nombre" maxlength="40" required>
+    <label for = "Nombre"></label> Nombre: 
+        <input 
+            type="text" 
+            name="nombre" 
+            size="40" 
+            placeholder="Ingrese su nombre" 
+            maxlength="40" 
+            required>
     </p>   
     <p>
-        Apellido: <input type="text" name="apellido" size="40" placeholder="Ingrese su apellido" maxlength="40" required>
+    <label for = "Apellido"></label> Apellido: 
+        <input 
+            type="text" 
+            name="apellido" 
+            size="40" 
+            placeholder="Ingrese su apellido" 
+            maxlength="40" 
+            required>
     </p>
     <p>
         Sexo: 
-        <input type="radio" name="sexo" value="'femenino"> Femenino
-        <input type="radio" name="sexo" value="'masculino"> Masculino
-        <input type="radio" name="sexo" value="'prefiero_no_decir"> Prefiero no decir 
+        <label for = "Femenino"></label> Femenino
+            <input type="radio" name="sexo" value="'Femenino">
+        <label for = "Masculino"></label> Masculino
+            <input type="radio" name="sexo" value="'Masculino">
+        <label for = "Prefiero no"></label> Prefiero no decir 
+            <input type="radio" name="sexo" value="'prefiero_no_decir">
     </p>
     <p>     
         Edad: <input type="number" name="edad" placeholder="Ingrese su edad" maxlength="3">
     </p>
+    </fieldset>
+    
+    <fieldset> 
+        <legend> Usuario </legend>
     <p>
         Email: <input type="email" name="email" size="40" placeholder="Ingrese su email" maxlength="40" required>
     </p>
@@ -46,6 +69,10 @@
     <p>
         Confirmar Password: <input type="password" name="confirmar_password" size="40" placeholder="Confirme su password" maxlength="40" required>    
     </p>
+    </fieldset>
+
+    <fieldset> 
+        <legend> Servicio </legend>
     <p>
         Tipo de servicio:
         <select name ="Tipo de servicio">
@@ -67,6 +94,8 @@
             Escriba un comentario...
         </textarea>
     </p>
+</fieldset>
+
 <button type="button">Boton de Enviar</button>
 </form>
 </body>

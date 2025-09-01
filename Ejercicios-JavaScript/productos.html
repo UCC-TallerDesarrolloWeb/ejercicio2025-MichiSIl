@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head> 
+  <meta charset="UTF-8">
+  <title>Catálogo de Productos</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body class="grid-container">
+  
+  <header class="item1">CATÁLOGO DE PRODUCTOS</header>
+  
+  <!-- NAV con botones -->
+  <nav class="item2">
+    <a class="btn btn--catalogo" href="#catalogo">Catálogo</a>
+    <a class="btn btn--carrito"  href="#carrito">Carrito de Compras</a>
+  </nav>
+  
+  <aside class="item3">
+    <form>
+      <!-- Búsqueda -->
+      <fieldset>
+        <legend>Búsqueda</legend>
+        <label for="search">Buscar: </label>
+        <input type="text" id="search" name="search" placeholder="Ingrese el producto">
+      </fieldset>
+      <br>
+      <!-- Precio -->
+      <fieldset>
+        <legend>Precios</legend>
+        <label for="min">Mínimo: </label>
+        <input type="number" id="min" name="min" placeholder="0">
+        <br><br>
+        <label for="max">Máximo: </label>
+        <input type="number" id="max" name="max" placeholder="1000">
+      </fieldset>
+      <br>
+      <!-- Tipo de productos -->
+      <fieldset>
+        <legend>Tipo de Productos</legend>
+        <label>
+          <input type="checkbox" name="tipo" value="protectores"> Protectores
+        </label>
+        <br><br>
+        <label>
+          <input type="checkbox" name="tipo" value="entrenamiento"> Entrenamiento
+        </label>
+        <br><br>
+        <label>
+          <input type="checkbox" name="tipo" value="doboks"> Doboks
+        </label>
+      </fieldset>
+    </form>
+  </aside>
+
+  <main class="item4" id="catalogo"> 
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/cabezal-cerrado.webp" alt="Cabezal Cerrado"> 
+      <h3>Cabezal Cerrado</h3>
+    </div>
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/escudo-potencia.webp" alt="Escudo de Potencia"> 
+      <h3>Escudo de Potencia</h3>
+    </div>
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/foco-con-dedos.webp" alt="Foco con Dedos"> 
+      <h3>Foco con Dedos</h3>
+    </div>
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/protectores-manos.webp" alt="Protectores de Manos"> 
+      <h3>Protectores de Manos</h3>
+    </div>
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/dobok.webp" alt="Dobok"> 
+      <h3>Dobok</h3>
+    </div>
+    <div> 
+      <img src="../Ejercicios-JavaScript/images/protectores-pie.webp" alt="Protector de Pie"> 
+      <h3>Protector de Pie</h3>
+    </div>
+  </main>
+  
+  <footer class="item5" id="carrito">Info de contacto</footer>
+  
+</body>
+</html>

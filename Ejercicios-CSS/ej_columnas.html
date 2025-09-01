@@ -1,15 +1,64 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Ejercicio Columnas</title>
+    <style>
+        /* Tag: tipografía global */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* ID: título de la página */
+        #tituloPrincipal {
+            color: darkblue;
+        }
+
+        /* Clase: títulos de noticia */
+        .tituloNoticia {
+            font-size: 24px; /* h3 */
+            margin: .2em 0;
+        }
+        h5.tituloNoticia { font-size: 20px; }
+
+        /* 2 columnas para el contenido del artículo */
+        section article {
+            column-count: 2;
+            column-gap: 2rem;
+        }
+
+        section article p {
+            line-height: 1.6;
+            margin: .6em 0;
+        }
+
+        /* Pseudo Clases sobre el enlace */
+        /* mismo color para link visitado y no visitado */
+        a:link, a:visited {
+            color: rgb(255, 0, 0);
+            text-decoration: none;
+        }
+
+        /* al pasar el mouse */
+        a:hover {
+            font-size: 1.2em; /* agranda fuente */
+        }
+
+        /* al hacer click (activo) */
+        a:active {
+            font-weight: bold; /* negrita */
+        }
+    </style>
 </head>
 <body>
-<!--Cree los estilos CSS necesarios para que el texto se visualice en 2 columnas-->
+
 <header>
     <h1 id="tituloPrincipal">Diario On-line</h1>
 </header>
-<a href="ej_leyes.html" target="_blank">Legal</a>
+
+<a href="ej_leyes.html" target="_blank">Legal</a><br><br>
+
+
 <section>
     <h3 class="tituloNoticia">CordoBici</h3>
     Publicado el 07/03/2018 en Agropecuarias y Ambiente
@@ -17,7 +66,7 @@
         <div>
             <p>
                 Un intercambio académico inspiró a Joaquín, Nicolás, Guido y Facundo para elegir el tema de su trabajo final.
-                Dos de ellos estuvieron el año pasado en Sevilla y se quedaron "enamorados" –palabras textuales- de su
+                Dos de ellos estuvieron el año pasado en Sevilla y se quedaron "enamorados" –palabras textuales– de su
                 sistema de bicicletas públicas; de su comodidad y rapidez, y de lo económico y saludable que resultaba.
             </p>
 
@@ -38,12 +87,13 @@
 
             <p>
                 Estudiaron su procedimiento, relevaron funcionamientos, contactaron proveedores y mantuvieron contacto con
-                la Municipalidad de Córdoba para conocer el escenario en donde se implementaría el proyecto.  A partir de
+                la Municipalidad de Córdoba para conocer el escenario en donde se implementaría el proyecto. A partir de
                 esta información estadística diseñaron un sistema para optimizar lo que ya existe. “Lo que han hecho es
                 mejorar la propuesta, agregando un know how”, explica Henry Martínez, coordinador de la carrera y director
                 de la tesis.
             </p>
         </div>
+
         <div class="grid-item">
             <p>
                 Gracias a una profunda investigación comercial, sumada a una simulación realizada por un programa llamado
@@ -65,7 +115,7 @@
 
             <p>
                 Por su parte, otros alumnos de la Facultad de Ingeniería estarían desarrollando el soft para complementar
-                el sistema con el programa que permite hacer el pedido.  Se trata de una aplicación para que la bici se
+                el sistema con el programa que permite hacer el pedido. Se trata de una aplicación para que la bici se
                 destrabe cuando se manda un mensaje de texto.
             </p>
 
