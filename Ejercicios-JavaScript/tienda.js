@@ -61,3 +61,21 @@ const productos = [
     imagen: "protectores-manos.webp",
   },
 ];
+
+let mostrarDetalle = () => {
+  document.getElementById("detalle").style.display = "block"
+}; 
+
+let cerrarModal = () => {
+  document.getElementById("detalle").style.display = "block"
+}; 
+
+productos.forEach((prod) => { 
+  contenido += <div> 
+    <img src="images/${prod.imagen}" alt="${prod.nombre}" />
+    <h3>${prod.nombre}</h3>
+    <button type="button" onclick="mostrarDetalle()">Ver Detalle</button>
+  </div>
+}); 
+
+document.getElementById("catalogo").innerHTML = contenido;
