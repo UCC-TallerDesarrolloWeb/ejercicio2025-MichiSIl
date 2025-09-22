@@ -2,106 +2,60 @@
 <html lang="es"> 
     <head> 
         <title>Catalogo de Productos</title>
-        <link rel="stylesheet" href="store.css" type="text/css" /
-        <script type="text?javascript" src="../Ejercicios-JavaScript/tienda.js"> </script>
+        <link rel="stylesheet" href="store.css" type="text/css">
+        <script type="text/javascript" src="tienda.js"></script>
     </head>
-    <body class="grid-container" onload="mostrarCatalogo()">
+    <body class="grid-container" onload="cargarProductos()">
         <header class="item1">Catalogo de poductos</header>
             <nav class="item2">
-                <a href="productos.html">Catalogo</a>
-                <a>Carrito de Compras</a>
+                <a href="productos.html">Catalogo de productos</a> 
+                <a href="carrito.html">Carrito de compras</a>
+
             </nav>
             <aside class="item3">
-                <form> 
+                <form>
                     <fieldset>
                         <legend>Busqueda</legend>
-                        <label for="search">Buscar:</label>
-                        <input 
-                        type="text" 
-                        id="search" 
-                        name="search" 
-                        placeholder="Palabra..."
-                        />
+                        <label>Buscar:</label>
+                        <input type="text" name="search" id="search" placeholder="Ingrese el producto">
                     </fieldset>
-                    <fieldset> 
+                    <fieldset>
                         <legend>Precios</legend>
                         <p>
-                        <label for="price-min">Minimo: </label>
-                        <input 
-                        type="number" 
-                        id="price-min" 
-                        name="price-mine" 
-                        value="0" 
-                        min="0"/> 
+                        <label for="price-min">Minimo:</label>
+                        <input type="number" name="min" id="price-min" value="0" placeholder="0">
                         </p>
                         <p>
-                        <label for="price-max">Maximo: </label>
-                        <input 
-                        type="number"
-                        id="price-max"
-                        name="price-max"
-                        value="0"
-                        />
+                        <label for="price-max">Maximo:</label>
+                        <input type="number" name="max" id="price-max" min="0" placeholder="10000">
                         </p>
-                    </fieldset>
-                    <fieldset> 
-                        <legend>Tipo de Productos</legend>
-                        <p> 
-                            <input 
-                            type="checkbox" 
-                            id="protectores" 
-                            name="protectores"/>
-                            <label for="protectores">Protectores</label>
+                        </fieldset>
+                    </p>
+                    <fieldset>
+                        <legend>Tipo de productos</legend>
+                        <p>
+                        <input type="checkbox" id="protectores" name="tipo" value="protectores">
+                        <label for="protectores">Protectores</label>
                         </p>
                         <p>
-                            <input 
-                            type="checkbox" 
-                            id="entrenamiento" 
-                            name="entrenamiento" />
-                            <label for="entrenamiento">Entrenamiento</label>
+                        <input type="checkbox" id="dobok" name="tipo" value="dobok">
+                        <label for="dobok">Dobok</label>
                         </p>
-                        <p> 
-                            <input 
-                            type="checkbox" 
-                            id="dobok" 
-                            name="dobok" />
-                            <label for="dobok">Dobok</label>
+                        <p>
+                        <input type="checkbox" id="entrenamiento" name="tipo" value="entrenamiento">
+                        <label for="entrenamiento">Entrenamiento</label>
                         </p>
-                    </fieldset>
                 </form>
             </aside>
-        <main class="item4"> 
-            <dialog id="detalle"> 
-                <h2>Detalle del Producto</h2>
-                <h3>Cabezal Cerrado</h3>
-                <p>Este producto viene del talle 1 a 3.</p>
-                <button type="button" onclick="cerrarModal()">Cerrar</button>
+             <dialog id="modal">
+                    <h2>Detalle del Producto</h2>
+                    <h3 id="titulo-producto">Cabezal cerrado</h3>
+                    <p id="descr-producto">El cabezal de sparring. Disponible en talle del 1 al 3.
+                        En color rojo y azul
+                    </p>
+                    <button type="button" onclick="cerrarModal()">Cerrar</button>
             </dialog>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/cabezal-cerrado.webp" alt="Cabezal Cerrado"> 
-                <h3>Cabezal Cerrado</h3>
-                <button type="button" onclick="mostrarDetalle()">Ver Detalle</button> 
-            </div>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/escudo-potencia.webp" alt="Escudo de Potencia"> 
-                <h3>Escudo de Potencia</h3>
-            </div>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/foco-con-dedos.webp" alt="Foco con Dedos"> 
-                <h3>Foco con Dedos</h3>
-            </div>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/protectores-manos.webp" alt="Protectores de Manos"> 
-                <h3>Protectores de Manos</h3>
-            </div>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/dobok.webp" alt="Dobok"> 
-                <h3>Dobok</h3>
-            </div>
-            <div> 
-                <img src="../Ejercicios-JavaScript/images/protectores-pie.webp" alt="Protector de Pie"> 
-                <h3>Protector de Pie</h3>
-            </div>
+        <main class="item4" id="mostrar-catalogo"> 
         </main>
         <footer class="item5">Info de contacto</footer>
     </body>
