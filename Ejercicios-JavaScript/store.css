@@ -1,8 +1,8 @@
 :root{
-  --color-primario: #e63946;   /* Rojo */
-  --color-secundario: #1d3557; /* Azul oscuro */
-  --color-letra: #ffffff;      /* Blanco */
-  --color-fondo: #f1f1f1;      /* Gris claro de fondo */
+  --color-primario: #e63946;
+  --color-secundario: #1d3557;
+  --color-letra: #ffffff;
+  --color-fondo: #f1f1f1;
 }
 
 body{
@@ -73,10 +73,10 @@ a:hover{
   border: 2px solid var(--color-primario);
   border-radius: 10px;
   padding: 12px;
-  background: var(--color-primario);        /* Fondo rojo */
+  background: var(--color-primario);
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,.08);
-  color: var(--color-letra);                /* Texto blanco */
+  color: var(--color-letra);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 #mostrar-catalogo .item:hover{
@@ -84,7 +84,7 @@ a:hover{
   box-shadow: 0 6px 16px rgba(0,0,0,.2);
 }
 
-/* Imágenes dentro del recuadro */
+/* Imágenes */
 #mostrar-catalogo .item img{
   width: auto;
   max-width: 100%;
@@ -93,7 +93,7 @@ a:hover{
   display: block;
   margin: 0 auto 8px;
   border-radius: 8px;
-  background: #fff;   /* marco blanco detrás de la foto */
+  background: #fff;
   padding: 6px;
 }
 
@@ -254,7 +254,6 @@ footer{
   justify-content: flex-end;
   margin-top: 8px;
 }
-
 .cart-footer .btn-danger{
   padding: 10px 14px;
   border-radius: 8px;
@@ -282,18 +281,6 @@ footer{
   }
 }
 
-/* Contador arriba del grid */
-.catalog-count{
-  grid-column: 1 / -1;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 10px 12px;
-  margin-bottom: 2px;
-  color: #333;
-  font-weight: 600;
-}
-
 /* Mensaje vacío */
 .catalog-empty{
   grid-column: 1 / -1;
@@ -305,16 +292,18 @@ footer{
   padding: 18px;
 }
 
-/* Badge para carrito en el nav (si lo usás) */
+/* Badge para carrito en el nav */
 .badge{
-  display: inline-block;
-  min-width: 20px;
-  padding: 2px 6px;
-  margin-left: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  background: #111827;
-  border-radius: 999px;
+  display:inline-block;
+  min-width:1.2em;
+  padding:0 .4em;
+  font-size:.85em;
+  line-height:1.2em;
+  text-align:center;
+  border-radius:999px;
+  background:#fff;
+  color:#c62828;
+  font-weight:700;
+  margin-left:.4rem;
+  border:2px solid #c62828;
 }

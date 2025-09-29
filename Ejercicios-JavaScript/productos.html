@@ -8,9 +8,11 @@
     <body class="grid-container" onload="cargarProductos()">
         <header class="item1">Catalogo de poductos</header>
             <nav class="item2">
-                <a href="productos.html">Catalogo de productos</a> 
-                <a href="carrito.html">Carrito de compras</a>
-
+            <a href="productos.html">Catalogo de productos</a>
+            <a href="carrito.html">
+                Carrito de compras
+                <span id="count-carrito" class="badge">0</span>
+            </a>
             </nav>
             <aside class="item3">
                 <form>
@@ -29,7 +31,7 @@
                         <label for="price-max">Maximo:</label>
                         <input type="number" name="max" id="price-max" min="0" placeholder="10000">
                         </p>
-                        </fieldset>
+                    </fieldset>
                     </p>
                     <fieldset>
                         <legend>Tipo de productos</legend>
@@ -45,6 +47,25 @@
                         <input type="checkbox" id="entrenamiento" name="tipo" value="entrenamiento">
                         <label for="entrenamiento">Entrenamiento</label>
                         </p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Marca</legend>
+                        <select id="marca">
+                            <option value="">Todas</option>
+                            <!-- Las opciones se cargan automáticamente desde el JS -->
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                    <legend>Ordenar</legend>
+                    <label for="orden">Orden:</label>
+                    <select id="orden">
+                        <option value="">Sin ordenar</option>
+                        <option value="precio-asc">Precio: menor a mayor</option>
+                        <option value="precio-desc">Precio: mayor a menor</option>
+                        <option value="nombre-asc">Nombre: A a Z</option>
+                        <option value="nombre-desc">Nombre: Z a A</option>
+                    </select>
+                    </fieldset>
                 </form>
             </aside>
              <dialog id="modal">

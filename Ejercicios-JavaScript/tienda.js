@@ -1,5 +1,3 @@
-"use strict";
-
 /* ====== Datos ====== */
 const productos = [
   { nombre: "Cabezal Sparring", description: "Cabezal de Sparring.", categoria: "Protectores", marca: "Gran Marc", talle: ["1","2","3"], precio: 35000, web: "https://www.granmarctiendaonline.com.ar/productos/cabezal-cerrado/", imagen: "cabezal-cerrado.webp" },
@@ -14,41 +12,30 @@ const productos = [
 const fmtARS = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 });
 const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
 
-/* ===== Render catálogo con contador ===== */
+/* ===== Render catálogo (SIN "Mostrando X") ===== */
 function renderProductos(lista) {
   const cont = document.getElementById("mostrar-catalogo");
   if (!cont) return;
 
-  // cabecera con contador
-  const header = `
-    <div class="catalog-count">
-      Mostrando <strong>${lista.length}</strong> producto${lista.length === 1 ? "" : "s"}
-    </div>
-  `;
-
   if (!lista || lista.length === 0) {
-    cont.innerHTML = header + `
+    cont.innerHTML = `
       <div class="catalog-empty">
         No hay productos que coincidan con el filtro.
       </div>`;
-  } else {
-    cont.innerHTML =
-      header +
-      lista
-        .map(
-          (p) => `
-        <article class="item">
-          <img src="images/${p.imagen}" alt="${p.nombre}" />
-          <h3>${p.nombre}</h3>
-          <p><strong>${fmtARS.format(p.precio)}</strong></p>
-          <div>
-            <button type="button" onclick="mostrarModal(${productos.indexOf(p)})">Ver Detalle del Producto</button>
-            <button type="button" onclick="agregarAlcarrito(${productos.indexOf(p)})">Agregar al Carrito</button>
-          </div>
-        </article>`
-        )
-        .join("");
+    return;
   }
+
+  cont.innerHTML = lista.map((p) => `
+    <article class="item">
+      <img src="images/${p.imagen}" alt="${p.nombre}" />
+      <h3>${p.nombre}</h3>
+      <p><strong>${fmtARS.format(p.precio)}</strong></p>
+      <div>
+        <button type="button" onclick="mostrarModal(${productos.indexOf(p)})">Ver Detalle del Producto</button>
+        <button type="button" onclick="agregarAlcarrito(${productos.indexOf(p)})">Agregar al Carrito</button>
+      </div>
+    </article>
+  `).join("");
 }
 
 /* ===== Filtros ===== */
@@ -56,6 +43,8 @@ function leerFiltros() {
   const q = norm(document.getElementById("search")?.value || "");
   const minInput = document.getElementById("price-min")?.value;
   const maxInput = document.getElementById("price-max")?.value;
+  const marcaSel = document.getElementById("marca")?.value || "";
+  const orden = document.getElementById("orden")?.value || "";
 
   let min = Number(minInput);
   let max = Number(maxInput);
@@ -67,13 +56,13 @@ function leerFiltros() {
     .filter((id) => document.getElementById(id)?.checked)
     .map((c) => c.toLowerCase());
 
-  return { q, min, max, catsMarcadas };
+  return { q, min, max, catsMarcadas, marcaSel, orden };
 }
 
 function aplicarFiltros() {
-  const { q, min, max, catsMarcadas } = leerFiltros();
+  const { q, min, max, catsMarcadas, marcaSel, orden } = leerFiltros();
 
-  const filtrados = productos.filter((p) => {
+  let filtrados = productos.filter((p) => {
     const textoOK =
       !q ||
       norm(p.nombre).includes(q) ||
@@ -81,15 +70,35 @@ function aplicarFiltros() {
       norm(p.marca).includes(q);
 
     const precioOK = p.precio >= min && p.precio <= max;
-
     const catOK = catsMarcadas.length === 0
       ? true
       : catsMarcadas.includes(norm(p.categoria));
+    const marcaOK = !marcaSel || p.marca === marcaSel;
 
-    return textoOK && precioOK && catOK;
+    return textoOK && precioOK && catOK && marcaOK;
   });
 
+  // Orden
+  if (orden === "precio-asc") {
+    filtrados.sort((a, b) => a.precio - b.precio);
+  } else if (orden === "precio-desc") {
+    filtrados.sort((a, b) => b.precio - a.precio);
+  } else if (orden === "nombre-asc") {
+    filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" }));
+  } else if (orden === "nombre-desc") {
+    filtrados.sort((a, b) => b.nombre.localeCompare(a.nombre, "es", { sensitivity: "base" }));
+  }
+
   renderProductos(filtrados);
+}
+
+function poblarMarcas() {
+  const $marca = document.getElementById("marca");
+  if (!$marca) return;
+  const marcas = [...new Set(productos.map(p => p.marca))].sort();
+  // Limpia y agrega <option> por cada marca
+  $marca.innerHTML = `<option value="">Todas</option>` +
+    marcas.map(m => `<option value="${m}">${m}</option>`).join("");
 }
 
 /* Debounce para búsqueda */
@@ -103,7 +112,6 @@ function debounce(fn, ms = 250) {
 
 /* ===== Contadores públicos ===== */
 function contarProductos() {
-  // devuelve el total que cumple filtros actuales
   const { q, min, max, catsMarcadas } = leerFiltros();
   return productos.filter((p) => {
     const textoOK =
@@ -119,12 +127,13 @@ function contarProductos() {
   }).length;
 }
 
+/* ===== Contador de carrito (badge) ===== */
 function actualizarContadorCarrito() {
   const el = document.getElementById("count-carrito");
   if (!el) return;
   const n = getCarrito().length;
-  el.textContent = n;
-  el.style.display = n ? "inline-block" : "none";
+  el.textContent = n;                 // muestra 0 cuando está vacío
+  el.style.display = "inline-block";  // siempre visible
 }
 
 /* ===== Modal (dialog nativo) ===== */
@@ -207,6 +216,7 @@ function eliminarProducto(idx){
 window.addEventListener("DOMContentLoaded", () => {
   renderProductos(productos);
   cargarCarrito();
+  actualizarContadorCarrito(); // asegura que el badge muestre 0 al inicio
 
   // listeners de filtros
   const $q = document.getElementById("search");
@@ -221,7 +231,7 @@ window.addEventListener("DOMContentLoaded", () => {
   [$protectores, $dobok, $entrenamiento].forEach(el => el && el.addEventListener("change", aplicarFiltros));
 });
 
-/* Exponer funciones (botones inline + consola) */
+/* Exponer funciones */
 window.mostrarModal = mostrarModal;
 window.cerrarModal = cerrarModal;
 window.agregarAlcarrito = agregarAlcarrito;
@@ -229,3 +239,26 @@ window.vaciarCarrito = vaciarCarrito;
 window.eliminarProducto = eliminarProducto;
 window.aplicarFiltros = aplicarFiltros;
 window.contarProductos = contarProductos;
+window.addEventListener("DOMContentLoaded", () => {
+  renderProductos(productos);
+  cargarCarrito();
+  actualizarContadorCarrito();
+
+  poblarMarcas(); // <<< NUEVO
+
+  // listeners de filtros
+  const $q = document.getElementById("search");
+  const $min = document.getElementById("price-min");
+  const $max = document.getElementById("price-max");
+  const $protectores = document.getElementById("protectores");
+  const $dobok = document.getElementById("dobok");
+  const $entrenamiento = document.getElementById("entrenamiento");
+  const $marca = document.getElementById("marca");   // <<< NUEVO
+  const $orden = document.getElementById("orden");   // <<< NUEVO
+
+  if ($q) $q.addEventListener("input", debounce(aplicarFiltros, 250));
+  [$min, $max].forEach(el => el && el.addEventListener("input", aplicarFiltros));
+  [$protectores, $dobok, $entrenamiento].forEach(el => el && el.addEventListener("change", aplicarFiltros));
+  if ($marca) $marca.addEventListener("change", aplicarFiltros);  // <<< NUEVO
+  if ($orden) $orden.addEventListener("change", aplicarFiltros);  // <<< NUEVO
+});
